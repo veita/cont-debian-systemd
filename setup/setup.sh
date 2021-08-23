@@ -29,7 +29,16 @@ apt-get clean -qy
 # install SSH
 apt-get install -y openssh-server
 
-sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+# configure sshd
+if [ -f /root/.ssh/authorized_keys ]; then
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin prohibit-password/g' /etc/ssh/sshd_config
+else
+    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+    # set the root password to admin
+    echo 'root:admin' | chpasswd
+fi
+
 sed -i 's/#MaxAuthTries [0-9]\+/MaxAuthTries 32/g' /etc/ssh/sshd_config
 
 # regenerate host key on container startup
@@ -42,9 +51,6 @@ ExecStartPre=/usr/sbin/dpkg-reconfigure --frontend=noninteractive openssh-server
 EOF
 
 chmod 644 /etc/systemd/system/sshd.service.d/regenerate-host-keys.conf
-
-# set the root password to admin
-echo 'root:admin' | chpasswd
 
 # system configuration: locales
 echo 'de_DE.UTF-8 UTF-8' >> /etc/locale.gen

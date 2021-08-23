@@ -8,6 +8,7 @@ SUITE=${1:-bullseye}
 CONT=$(buildah from debian:${SUITE})
 
 buildah copy $CONT etc/ /etc
+buildah copy $CONT root/ /root
 buildah copy $CONT setup/ /setup
 buildah run $CONT /bin/bash /setup/setup.sh
 buildah run $CONT rm -rf /setup
