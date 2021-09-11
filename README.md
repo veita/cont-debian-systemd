@@ -9,7 +9,7 @@ virtual machines.
 
 ## Run the image build
 
-To build a Debian 10 Bullseye image run
+To build a Debian 11 Bullseye image run
 
 ```bash
 ./build-container.sh
