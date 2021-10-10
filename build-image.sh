@@ -14,6 +14,7 @@ buildah run $CONT /bin/bash /setup/setup.sh
 buildah run $CONT rm -rf /setup
 
 buildah config --author "Alexander Veit" $CONT
+buildah config --label commit=$(git describe --always --tags --dirty=-dirty) $CONT
 buildah config --cmd '/sbin/init' $CONT
 buildah config --port 22/tcp $CONT
 
