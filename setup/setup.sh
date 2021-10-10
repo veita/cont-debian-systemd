@@ -18,14 +18,6 @@ rm -f /lib/systemd/system/multi-user.target.wants/* \
     /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
     /lib/systemd/system/systemd-update-utmp*
 
-# Postfix is needed to prevent excessive package pulls (Exim etc.) later
-debconf-set-selections <<< "postfix postfix/mailname string 'localhost'"
-debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Local only'"
-apt-get install -qy postfix
-
-apt-get autoremove -qy
-apt-get clean -qy
-
 # install SSH
 apt-get install -y openssh-server
 
@@ -126,7 +118,6 @@ EOF
 
 # services
 systemctl enable ssh.service
-systemctl disable postfix.service
 systemctl disable cron.service
 
 # cleanup
