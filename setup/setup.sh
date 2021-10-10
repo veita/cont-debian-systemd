@@ -85,40 +85,8 @@ alias sc=systemctl
 alias jc=journalctl
 EOF
 
-# vim settings for root
-cat << EOF > /root/.vimrc
-set mouse-=a
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoindent
-EOF
-
-# Git settings for root
-cat << EOF > /root/.gitconfig
-[user]
-  email = root@container
-  name = Container Chef
-
-[core]
-  editor = vim
-[log]
-  date = iso
-[alias]
-  st = status
-  co = checkout
-  br = branch
-  up = rebase
-  ci = commit
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  rr = remote -v
-  ac = !git add -A && git commit
-EOF
-
 # services
 systemctl enable ssh.service
-systemctl disable cron.service
 
 # cleanup
 apt-get autoremove -qy
