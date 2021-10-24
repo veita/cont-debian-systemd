@@ -1,3 +1,9 @@
 *.swp
 *.log
 
+.ssh
+id_*
+authorized_keys
+authorized_keys*
+known_hosts
+
