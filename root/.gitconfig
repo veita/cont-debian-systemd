@@ -15,4 +15,6 @@
   lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
   rr = remote -v
   ac = !git add -A && git commit
+[init]
+  defaultBranch = master
 
