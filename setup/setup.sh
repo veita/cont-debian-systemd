@@ -40,6 +40,7 @@ cat << EOF > /etc/systemd/system/sshd.service.d/regenerate-host-keys.conf
 [Service]
 ExecStartPre=/bin/bash -c '/bin/rm /etc/ssh/ssh_host_* || :'
 ExecStartPre=/usr/sbin/dpkg-reconfigure --frontend=noninteractive openssh-server
+ExecStartPre=/bin/rm -rf /etc/systemd/system/sshd.service.d
 EOF
 
 chmod 644 /etc/systemd/system/sshd.service.d/regenerate-host-keys.conf

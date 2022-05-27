@@ -36,7 +36,7 @@ Run the container with sshd listening on port 10022 for remote connections.
 podman run --rm --detach --cap-add audit_write,audit_control -p=10022:22 localhost/debian-systemd-bullseye
 ```
 
-Connect per SSH (host keys are regenerated at each container start).
+Connect per SSH (host keys are newly created at the first container start).
 
 ```bash
 ssh -p 10022 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@host.example.org 
