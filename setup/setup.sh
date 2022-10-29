@@ -33,6 +33,9 @@ fi
 
 sed -i 's/#MaxAuthTries [0-9]\+/MaxAuthTries 32/g' /etc/ssh/sshd_config
 
+# services
+systemctl enable ssh.service
+
 # regenerate host key on container startup
 mkdir /etc/systemd/system/sshd.service.d
 
@@ -66,32 +69,10 @@ sed -i 's/"set background=dark/set background=dark/g' /etc/vim/vimrc
 sed -i 's/#startup_message off/startup_message off/g' /etc/screenrc
 
 # shell settings for root
-cat << EOF >> /root/.bashrc
-PS1='\[\033[01;33m\](container) \u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
+source /setup/root-bashrc.sh >> /root/.bashrc
 
-alias l="ls --time-style=long-iso --color=always -laF"
-alias ll="ls --time-style=long-iso --color=auto -laF"
-alias ls="ls --time-style=long-iso --color=auto"
-alias dt="date --utc '+%Y-%m-%d %H:%M:%S UTC'"
-alias g="grep --exclude-dir .git --exclude-dir .svn --color=always"
-alias o="less -r"
-alias s="screen"
-alias t="screen -dr || screen"
-alias v="vim"
-alias ..="cd .."
-alias ...="cd ../.."
-
-alias halt="systemctl poweroff"
-alias sc=systemctl
-alias jc=journalctl
-EOF
-
-# services
-systemctl enable ssh.service
+# vim settings for root
+echo 'set mouse-=a' > /root/.vimrc
 
 # cleanup
-apt-get autoremove -qy
-apt-get clean -qy
-
-rm -rf /tmp/* /var/tmp/*
-
+source /setup/cleanup-image.sh
