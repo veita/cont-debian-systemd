@@ -61,12 +61,15 @@ sed -i 's/SHELL=\/bin\/sh/SHELL=\/bin\/bash/g' /etc/default/useradd
 
 sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' /etc/skel/.bashrc
 
+source /setup/user-bashrc.sh >> /etc/skel/.bashrc
+
 # global vim configuration
 sed -i 's/"syntax on/syntax on/g' /etc/vim/vimrc
 sed -i 's/"set background=dark/set background=dark/g' /etc/vim/vimrc
 
 # global screen configuration
 sed -i 's/#startup_message off/startup_message off/g' /etc/screenrc
+echo 'shell /bin/bash' >> /etc/screenrc
 
 # shell settings for root
 source /setup/root-bashrc.sh >> /root/.bashrc

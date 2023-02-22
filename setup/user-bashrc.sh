@@ -14,4 +14,5 @@ alias t="screen -dr || screen"
 alias v="vim"
 alias ..="cd .."
 alias ...="cd ../.."
+
 EOF

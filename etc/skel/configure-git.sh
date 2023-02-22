@@ -1,6 +1,8 @@
 
-git config --global user.name "${USER}"
-git config --global user.email "${USER}@container"
+GITUSER=${USER:-dummy}
+
+git config --global user.name "${GITUSER}"
+git config --global user.email "${GITUSER}@container"
 
 git config --global core.editor vim
 git config --global log.date iso
