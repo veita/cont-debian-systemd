@@ -23,9 +23,9 @@ apt-get install -y openssh-server
 
 # configure sshd
 if [ -f /root/.ssh/authorized_keys ]; then
-    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin prohibit-password/g' /etc/ssh/sshd_config
+    sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin prohibit-password|g' /etc/ssh/sshd_config
 else
-    sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+    sed -i 's|#PermitRootLogin prohibit-password|PermitRootLogin yes|g' /etc/ssh/sshd_config
 
     # set the root password to admin
     echo 'root:admin' | chpasswd
@@ -57,18 +57,18 @@ echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen
 sed -i 's/# "\\e\[5~": history-search-backward/"\\e\[5~": history-search-backward/g' /etc/inputrc
 sed -i 's/# "\\e\[6~": history-search-forward/"\\e\[6~": history-search-forward/g' /etc/inputrc
 
-sed -i 's/SHELL=\/bin\/sh/SHELL=\/bin\/bash/g' /etc/default/useradd
+sed -i 's|SHELL=/bin/sh|SHELL=/bin/bash|g' /etc/default/useradd
 
-sed -i 's/#force_color_prompt=yes/force_color_prompt=yes/g' /etc/skel/.bashrc
+sed -i 's|#force_color_prompt=yes|force_color_prompt=yes|g' /etc/skel/.bashrc
 
 source /setup/user-bashrc.sh >> /etc/skel/.bashrc
 
 # global vim configuration
-sed -i 's/"syntax on/syntax on/g' /etc/vim/vimrc
-sed -i 's/"set background=dark/set background=dark/g' /etc/vim/vimrc
+sed -i 's|"syntax on|syntax on|g' /etc/vim/vimrc
+sed -i 's|"set background=dark|set background=dark|g' /etc/vim/vimrc
 
 # global screen configuration
-sed -i 's/#startup_message off/startup_message off/g' /etc/screenrc
+sed -i 's|#startup_message off|startup_message off|g' /etc/screenrc
 echo 'shell /bin/bash' >> /etc/screenrc
 
 # shell settings for root
