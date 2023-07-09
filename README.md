@@ -9,17 +9,17 @@ virtual machines.
 
 ## Run the image build
 
-To build a Debian 11 Bullseye image run
+To build a Debian 12 Bookworm image run
 
 ```bash
 ./build-container.sh
 ```
 
 To build an image with a specific Debian version
-(`buster`, `bullseye`, `bookworm`) run
+(`bullseye`, `bookworm`, `trixie`) run
 
 ```bash
-./build-container.sh buster
+./build-container.sh bullseye
 ```
 
 Without placing a `root/.ssh/authorized_keys` file in the project directory
@@ -33,7 +33,7 @@ to the given SSH keys.
 Run the container with sshd listening on port 10022 for remote connections.
 
 ```bash
-podman run --rm --detach --cap-add audit_write,audit_control -p=10022:22 localhost/debian-systemd-bullseye
+podman run --rm --detach --cap-add audit_write,audit_control -p=10022:22 localhost/debian-systemd-bookworm
 ```
 
 Connect per SSH (host keys are newly created at the first container start).

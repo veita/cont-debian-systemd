@@ -4,7 +4,7 @@ set -ex
 
 cd "${0%/*}"
 
-SUITE=${1:-bullseye}
+SUITE=${1:-bookworm}
 CONT=$(buildah from debian:${SUITE})
 
 buildah copy $CONT etc/ /etc
