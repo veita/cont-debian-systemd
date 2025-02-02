@@ -7,4 +7,6 @@ authorized_keys
 authorized_keys*
 known_hosts
 
-/local/
+/tmp/
+/work/
+
