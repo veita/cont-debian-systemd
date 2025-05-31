@@ -6,8 +6,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -qy
 apt-get upgrade -qy
+apt-get dist-upgrade -qy
 apt-get install -qy systemd systemd-sysv sudo locales lsb-release wget curl \
-                    gnupg2 less vim screen ripgrep tree unzip htop
+                    gnupg2 less vim screen ripgrep tree unzip zstd htop
 
 # cleanup Systemd configuration
 rm -f /lib/systemd/system/multi-user.target.wants/* \
